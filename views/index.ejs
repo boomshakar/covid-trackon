@@ -1,0 +1,102 @@
+<%- include ("partials/header") -%>
+
+  <div class="row mt-2 mb-2">
+    <div class="col-lg-3 card--cover col-md-6">
+      <div class="card case-card c-blu">
+        <div class="card-body">
+          <h6 class="card-title">Confirmed Cases</h6>
+          <h2 class="card-text row">
+            <i class="fas fa-viruses"></i>
+            <span class="text-end"> <%= confirmedCases %></span></h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 card--cover col-md-6">
+      <div class="card case-card c-yel">
+        <div class="card-body">
+          <h6 class="card-title">Active Cases</h6>
+          <h2 class="card-text row">
+            <i class="fas fa-procedures"></i>
+            <span class="text-end"> <%= activeCases %> </span>
+          </h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 card--cover col-md-6">
+      <div class="card case-card c-grn">
+        <div class="card-body">
+          <h6 class="card-title">Discharged Cases</h6>
+          <h2 class="card-text row">
+            <i class="fas fa-heartbeat"></i>
+            <span class="text-end"> <%= dischargedCases %> </span></h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 card--cover col-md-6">
+      <div class="card case-card c-red">
+        <div class="card-body">
+          <h6 class="card-title">Death Cases</h6>
+          <h2 class="card-text row">
+            <i class="fas fa-virus-slash"></i>
+            <span class="text-end"> <%= deathCases %> </span>
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- The dashboard -->
+
+  <!-- creating the table -->
+    <section class="main_table">
+      <div class="table-responsive">
+      <table class="table table-bordered table-striped table-hover" id="table_id" class="display">
+        <thead class="table-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Country</th>
+            <th scope="col">Total<br>Cases</th>
+            <th scope="col">New<br/>Cases</th>
+            <th scope="col">Total<br>Deaths</th>
+            <th scope="col">New<br/>Deaths</th>
+            <th scope="col">Recovered<br/>Cases</th>
+            <th scope="col">Newly<br/>Recovered</th>
+            <th scope="col">Active<br/>Cases</th>
+            <th scope="col">Critical<br/>Case</th>
+            <th scope="col">Total<br/>Cases/<br/>1M Pop.</th>
+            <th scope="col">Total<br/>Deaths/<br/>1M Pop</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- seperate joint numbers of thousands with comma passed from the data of the api -->
+          <% function thousands_separators(num){ %> 
+            <% var num_parts = num.toString().split("."); %> 
+            <% num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ","); %> 
+            <% return num_parts.join("."); %> 
+          <% } %> 
+          <% countries.forEach(country=> { %>
+            <tr class="clickable-row">
+              <th scope="row"> <%= countries.indexOf(country) + 1 %></th>
+              <td class="country-col"><img src=" <%= country.countryInfo.flag %> " class="country-flag"><a href="/country/<%= country.country %>" class="country-link" id="<%= country.country %>"><%= thousands_separators(country.country) %></a></td>
+              <td><a href="/country/<%= country.country %>" class="country-link" id="<%= country.country %>"><%= thousands_separators(country.cases) %></a></td>
+              <td><a href="/country/<%= country.country %>" class="country-link" id="<%= country.country %>"><%= thousands_separators(country.todayCases) %></a></td>
+              <td class="table-danger"><a href="/country/<%= country.country %>" class="country-link" id="<%= country.country %>"><%= thousands_separators(country.deaths) %></a></td>
+              <td><a href="/country/<%= country.country %>" class="country-link" id="<%= country.country %>"><%= thousands_separators(country.todayDeaths) %></a></td>
+              <td class="table-success"><a href="/country/<%= country.country %>" class="country-link" id="<%= country.country %>"><%= thousands_separators(country.recovered) %></a></td>
+              <td><a href="/country/<%= country.country %>" class="country-link" id="<%= country.country %>"><%= thousands_separators(country.todayRecovered) %></a></td>
+              <td class="table-warning"><a href="/country/<%= country.country %>" class="country-link" id="<%= country.country %>"><%= thousands_separators(country.active) %></a></td>             
+              <td><a href="/country/<%= country.country %>" class="country-link" id="<%= country.country %>"><%= thousands_separators(country.critical) %></a></td>             
+              <td><a href="/country/<%= country.country %>" class="country-link" id="<%= country.country %>"><%= thousands_separators(country.casesPerOneMillion) %></a></td>             
+              <td><a href="/country/<%= country.country %>" class="country-link" id="<%= country.country %>"><%= thousands_separators(country.deathsPerOneMillion) %></a></td>            
+            </tr>
+          <% }) %>
+            
+        </tbody>
+        
+      </table>
+    </div>
+    <!-- creating the table -->
+
+  </section>
+
+  <%- include ("partials/footer") -%>
+</div>

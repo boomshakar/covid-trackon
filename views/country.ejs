@@ -1,0 +1,89 @@
+<%- include ("partials/header") -%>
+
+<section>
+  <div class="country-chart">
+    <h2 class="text-center"><%= countryCap %></h2>
+    <canvas id="myChart" style="width: 100%; height: 70vh"></canvas>
+  </div>
+  <textarea name="" id="caseData" class="hideme"><%= caseData  %> </textarea>
+  <textarea name="" id="allDataDeath" class="hideme">
+<%= allDataDeath  %> </textarea
+  >
+  <textarea name="" id="allDataRecovered" class="hideme">
+<%= allDataRecovered  %> </textarea
+  >
+  <textarea name="" id="allDataCase" class="hideme">
+<%= allDataCase %></textarea
+  >
+</section>
+
+<%- include ("partials/footer") -%>
+<script>
+  let myChart = document.getElementById("myChart").getContext("2d");
+  let cases = $("#caseData").html().split(",");
+  let death = $("#allDataDeath").html().split(",");
+  let recovered = $("#allDataRecovered").html().split(",");
+  let caseLabel = $("#allDataCase").html().split(",");
+
+  let countryChart = new Chart(myChart, {
+    type: "line", // bar, pie, line, doughnut, radar, polarArea
+    data: {
+      labels: caseLabel,
+      datasets: [
+        {
+          label: "Cases",
+          data: cases,
+          backgroundColor: "rgba(54, 162, 235, 0.2)",
+          borderColor: "rgba(54, 162, 235, 1)",
+          borderWidth: 1,
+        },
+        {
+          label: "Deaths",
+          data: death,
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          borderColor: "rgba(255, 99, 132, 1)",
+          borderWidth: 1,
+        },
+        {
+          label: "Recovered",
+          data: recovered,
+          backgroundColor: [, "rgba(255, 206, 86, 0.2)"],
+          borderColor: "rgba(255, 206, 86, 1)",
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        xAxes: [
+          {
+            ticks: {
+              display: true,
+              autoSkip: true,
+              maxTicksLimit: 15,
+              maxRotation: 90,
+              minRotation: 90,
+            },
+            scaleLabel: {
+              display: true,
+              labelString: "Dates",
+            },
+          },
+        ],
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            },
+            scaleLabel: {
+              display: true,
+              labelString: "Population",
+            },
+          },
+        ],
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+    },
+  });
+</script>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Covid-TrackOn | <%= titleHead %></title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+<link rel="manifest" href="img/site.webmanifest">
+    <script src="https://kit.fontawesome.com/79e663ecd4.js" crossorigin="anonymous"></script>
+  </head>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="/">Covid-TrackOn</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarText"
+        aria-controls="navbarText"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item" id="home">
+            <a class="navbar nav-link" href="/">HOME</a>
+          </li>
+          <li class="nav-item" id="about">
+            <a class="navbar nav-link" href="/*">LOREM</a>
+          </li>
+          <li class="nav-item" id="contact">
+            <a class="navbar nav-link" href="/contactme">CONTACT ME</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <body>
+    <!-- The dashboard -->
+<div class="container">
+  <div class="card mt-3 p-4 pb-0 dashboard-div">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-2 col-sm-6 pulse--live">
+          <span class="material-icons">
+            notifications_active
+            </span>
+          <h5>Live</h5>
+        </div>
+        <div class="col-md-10 col-sm-6 p-0 dashboard-head">
+          <h1 class="card-title text-center">COVID-19 GLOBAL DASHBOARD</h1>
+        </div>
+      </div>
+      <p class="dashboard-para card-text text-end"><i> Last updated: <%= minutesAgo %> </i></p>
+    </div>
+  </div>
+  </body>
+</html>
